@@ -1,0 +1,6 @@
+{% for item in shopping_list %}
+{{ item.recipe.name }}:
+{% for ingredient in item.recipe.ingredients.all %}
+- {{ ingredient.name }}: {{ ingredient.amount }} {{ ingredient.measurement_unit }}
+{% endfor %}
+{% endfor %}
