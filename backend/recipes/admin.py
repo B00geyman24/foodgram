@@ -17,12 +17,9 @@ class BaseAdminSettings(admin.ModelAdmin):
 
 class TagAdmin(BaseAdminSettings):
     """
-    Кастомизация админ панели (управление тегами).
+    Управление тегами.
     """
-    list_display = (
-        'name',
-        'slug'
-    )
+    list_display = ('name', 'slug')
     list_display_links = ('name',)
     search_fields = ('name',)
     list_filter = ('name',)
@@ -30,26 +27,17 @@ class TagAdmin(BaseAdminSettings):
 
 class IngredientAdmin(BaseAdminSettings):
     """
-    Кастомизация админ панели (управление ингредиентами).
+    Управление ингредиентами.
     """
-    list_display = (
-        'name',
-        'measurement_unit'
-    )
-    # list_display_links = ('name',)
-    # search_fields = ('name',)
+    list_display = ('name', 'measurement_unit')
     list_filter = ('name',)
 
 
 class RecipeAdmin(BaseAdminSettings):
     """
-    Кастомизация админ панели (управление рецептами).
+    Управление рецептами.
     """
-    list_display = (
-        'name',
-        'author',
-        'added_in_favorites'
-    )
+    list_display = ('name', 'author', 'added_in_favorites')
     list_display_links = ('name',)
     search_fields = ('name',)
     list_filter = ('author', 'name', 'tags')
@@ -64,18 +52,15 @@ class RecipeAdmin(BaseAdminSettings):
 
 class RecipeIngredientAdmin(admin.ModelAdmin):
     """
-    Кастомизация админ панели (управление ингридиентами в рецептах).
+    Управление ингридиентами в рецептах.
     """
-    list_display = (
-        'ingredient',
-        'amount',
-    )
+    list_display = ('ingredient', 'amount',)
     list_filter = ('ingredient',)
 
 
 class FavoriteAdmin(admin.ModelAdmin):
     """
-    Кастомизация админ панели (управление избранными рецептами).
+    Управление избранными рецептами.
     """
     list_display = ('user', 'recipe')
     list_filter = ('user', 'recipe')
@@ -84,7 +69,7 @@ class FavoriteAdmin(admin.ModelAdmin):
 
 class ShoppingListAdmin(admin.ModelAdmin):
     """
-    Кастомизация админ панели (управление избранными рецептами).
+    Управление избранными рецептами.
     """
     list_display = ('recipe', 'user')
     list_filter = ('recipe', 'user')
