@@ -8,18 +8,18 @@ volumes:
 services:
   db:
     image: postgres:13
+    env_file: .env
     volumes:
       - pg_data:/var/lib/postgresql/data
-    env_file: .env
   backend:
-    build: ../backend/
+    image: okyrok2010/foodgram_backend
     env_file: .env
     volumes:
       - static:/app/backend_static
       - media:/app/media
   frontend:
     container_name: foodgram-front
-    build: ../frontend
+    image: okyrok2010/foodgram_frontend
     volumes:
       - ../frontend/:/app/result_build/
   nginx:
@@ -35,4 +35,3 @@ services:
       - ../docs/:/usr/share/nginx/html/api/docs/
       - static:/var/html/static/
       - media:/var/html/media/
-
