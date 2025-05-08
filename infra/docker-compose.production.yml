@@ -33,3 +33,4 @@ services:
       - ../docs/:/usr/share/nginx/html/api/docs/
       - static:/app/html/static/
       - media:/app/html/media/
+
