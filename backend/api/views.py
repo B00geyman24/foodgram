@@ -9,13 +9,13 @@ from rest_framework import filters, mixins, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
+from users.serializers import RecipeSerializer
+
 from .filters import RecipeFilter
 from .pagination import CustomPaginator
 from .permissions import IsAuthorOrReadOnly
 from .serializers import (IngredientSerializer, RecipeCreateSerializer,
-                          RecipeReadSerializer,
-                          TagSerializer)
-from users.serializers import RecipeSerializer
+                          RecipeReadSerializer, TagSerializer)
 
 
 class IngredientViewSet(mixins.ListModelMixin,

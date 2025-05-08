@@ -1,14 +1,14 @@
+from api.pagination import CustomPaginator
 from django.shortcuts import get_object_or_404
 from rest_framework import mixins, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from users.models import Subscribe, User
-from api.pagination import CustomPaginator
-from .serializers import (SetPasswordSerializer, AuthorSubscriptionSerializer,
-                          SubscriptionsSerializer,
-                          UserCreateSerializer, UserReadSerializer,
-                          UserAvatarSerializer)
+
+from .serializers import (AuthorSubscriptionSerializer, SetPasswordSerializer,
+                          SubscriptionsSerializer, UserAvatarSerializer,
+                          UserCreateSerializer, UserReadSerializer)
 
 
 class UserViewSet(mixins.CreateModelMixin,

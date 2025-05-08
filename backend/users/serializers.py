@@ -2,9 +2,9 @@ from django.contrib.auth.password_validation import validate_password
 from django.core import exceptions as django_exceptions
 from djoser.serializers import UserCreateSerializer, UserSerializer
 from drf_base64.fields import Base64ImageField
+from recipes.models import Recipe
 from rest_framework import serializers
 from users.models import Subscribe, User
-from recipes.models import Recipe
 
 
 class UserReadSerializer(UserSerializer):
