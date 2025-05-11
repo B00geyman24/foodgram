@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-p6#5649r6ze7i&o&54d7%hl*gvk9-qny#is5*x9)=1e39$wl-)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['51.250.22.197', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['51.250.22.197', '127.0.0.1', 'localhost', 'foodgram24.hopto.org']
 
 
 # Application definition
@@ -151,8 +151,3 @@ REST_FRAMEWORK = {
 DJOSER = {
     'LOGIN_FIELD': 'email',
 }
-
-
-DEFAULT_FROM_EMAIL = 'admin@foodgram.ru'
-
-SHOPPING_CART = 'shopping_cart.txt'
