@@ -10,6 +10,7 @@ class BaseAdminSettings(admin.ModelAdmin):
     list_filter = ('author', 'name', 'tags')
 
 
+@admin.register(Tag)
 class TagAdmin(BaseAdminSettings):
     """
     Управление тегами.
@@ -20,6 +21,7 @@ class TagAdmin(BaseAdminSettings):
     list_filter = ('name',)
 
 
+@admin.register(Ingredient)
 class IngredientAdmin(BaseAdminSettings):
     """
     Управление ингредиентами.
@@ -28,6 +30,7 @@ class IngredientAdmin(BaseAdminSettings):
     list_filter = ('name',)
 
 
+@admin.register(Recipe)
 class RecipeAdmin(BaseAdminSettings):
     """
     Управление рецептами.
@@ -45,6 +48,7 @@ class RecipeAdmin(BaseAdminSettings):
     added_in_favorites.short_description = 'Количество добавлений в избранное'
 
 
+@admin.register(RecipeIngredient)
 class RecipeIngredientAdmin(admin.ModelAdmin):
     """
     Управление ингридиентами в рецептах.
@@ -53,6 +57,7 @@ class RecipeIngredientAdmin(admin.ModelAdmin):
     list_filter = ('ingredient',)
 
 
+@admin.register(Favorite)
 class FavoriteAdmin(admin.ModelAdmin):
     """
     Управление избранными рецептами.
@@ -62,6 +67,7 @@ class FavoriteAdmin(admin.ModelAdmin):
     search_fields = ('user', 'recipe')
 
 
+@admin.register(ShoppingList)
 class ShoppingListAdmin(admin.ModelAdmin):
     """
     Управление избранными рецептами.
@@ -69,11 +75,3 @@ class ShoppingListAdmin(admin.ModelAdmin):
     list_display = ('recipe', 'user')
     list_filter = ('recipe', 'user')
     search_fields = ('user',)
-
-
-admin.site.register(Tag, TagAdmin)
-admin.site.register(Ingredient, IngredientAdmin)
-admin.site.register(Recipe, RecipeAdmin)
-admin.site.register(Favorite, FavoriteAdmin)
-admin.site.register(ShoppingList, ShoppingListAdmin)
-admin.site.register(RecipeIngredient, RecipeIngredientAdmin)

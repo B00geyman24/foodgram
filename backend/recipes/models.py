@@ -35,6 +35,7 @@ class Tag(models.Model):
     )
 
     class Meta:
+        ordering = ['name']
         verbose_name = 'Тег'
         verbose_name_plural = 'Теги'
 
@@ -43,6 +44,22 @@ class Tag(models.Model):
 
 
 class Recipe(models.Model):
+    author = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='recipes',
+        verbose_name='Автор'
+    )
+    ingredients = models.ManyToManyField(
+        Ingredient,
+        through='RecipeIngredient',
+        through_fields=('recipe', 'ingredient'),
+        verbose_name='Ингредиенты'
+    )
+    tags = models.ManyToManyField(
+        Tag,
+        verbose_name='Теги'
+    )
     name = models.CharField(
         'Название',
         max_length=256
@@ -62,22 +79,6 @@ class Recipe(models.Model):
     pub_date = models.DateTimeField(
         'Дата публикации',
         auto_now_add=True
-    )
-    author = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE,
-        related_name='recipes',
-        verbose_name='Автор'
-    )
-    ingredients = models.ManyToManyField(
-        Ingredient,
-        through='RecipeIngredient',
-        through_fields=('recipe', 'ingredient'),
-        verbose_name='Ингредиенты'
-    )
-    tags = models.ManyToManyField(
-        Tag,
-        verbose_name='Теги'
     )
 
     class Meta:
@@ -108,6 +109,7 @@ class RecipeIngredient(models.Model):
     )
 
     class Meta:
+        ordering = ['recipe', 'ingredient']
         verbose_name = 'Ингредиенты в рецепте'
         verbose_name_plural = 'Ингредиенты в рецептах'
         constraints = [
@@ -128,17 +130,18 @@ class Favorite(models.Model):
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name='favorite_user',
+        related_name='favorite',
         verbose_name='Добавил в избранное'
     )
     recipe = models.ForeignKey(
         Recipe,
         on_delete=models.CASCADE,
-        related_name='favorite_recipe',
+        related_name='favorite',
         verbose_name='Избранный рецепт'
     )
 
     class Meta:
+        ordering = ['user', 'recipe']
         verbose_name = 'Избранное'
         verbose_name_plural = 'Избранное'
         constraints = [
@@ -156,17 +159,18 @@ class ShoppingList(models.Model):
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name='shopping_user',
+        related_name='shopping_list',
         verbose_name='Добавил в корзину'
     )
     recipe = models.ForeignKey(
         Recipe,
         on_delete=models.CASCADE,
-        related_name='shopping_recipe',
+        related_name='shopping_list',
         verbose_name='Рецепт в корзине'
     )
 
     class Meta:
+        ordering = ['user', 'recipe']
         verbose_name = 'Корзина'
         verbose_name_plural = 'Корзина'
         constraints = [
