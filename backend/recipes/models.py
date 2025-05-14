@@ -58,6 +58,8 @@ class Recipe(models.Model):
     )
     tags = models.ManyToManyField(
         Tag,
+        through="RecipeTags",
+        through_fields=('recipe', 'tag'),
         verbose_name='Теги'
     )
     name = models.CharField(
@@ -124,6 +126,20 @@ class RecipeIngredient(models.Model):
                 f'{self.ingredient.name} - '
                 f'{self.amount} '
                 f'{self.ingredient.measurement_unit}')
+
+
+class RecipeTags(models.Model):
+    recipe = models.ForeignKey(
+        Recipe, on_delete=models.CASCADE, verbose_name="Рецепт"
+    )
+    tag = models.ForeignKey(Tag, on_delete=models.CASCADE, verbose_name="Тег")
+
+    class Meta:
+        verbose_name = "Теги"
+        verbose_name_plural = "Теги"
+
+    def __str__(self):
+        return f"У рецепта {self.recipe} есть тег {self.tag}"
 
 
 class Favorite(models.Model):
